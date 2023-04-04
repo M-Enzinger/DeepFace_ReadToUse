@@ -11,11 +11,34 @@ tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Face A
 
 
 with tab3:
-    st.title("Face Analysis")
     st.header("Image:")
-    a_one = DeepFace.analyze(img_path="face_db/img19.jpg",
+    path = 'face_db/img19.jpg'
+    a_one = DeepFace.analyze(img_path=path,
                             actions=['age', 'gender', 'race', 'emotion']
                             )
+
+    im = Image.open(path)
+    # Create figure and axes
+    fig, ax = plt.subplots()
+    # Display the image
+    ax.imshow(im)
+    # Create a Rectangle patch
+    for n in a_one:
+        x = n['region']['x']
+        y = n['region']['y']
+        w = n['region']['w']
+        h = n['region']['h']
+        rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
+        ax.add_patch(rect)
+
+    if (len(a_one) == 1):
+        s = '1 Face Found'
+    else:
+        s = str(len(a_one)) + ' Faces Found'
+
+    plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
+    plt.show()
+    st.pyplot(fig)
 
     age = a_one[0]['age']
     gender = a_one[0]['dominant_gender']
@@ -41,10 +64,10 @@ with tab3:
     st.info('The Person is approximately ' + str(age) + ' years old.')
 
     st.subheader("Gender:")
-    st.info('The Person is dominantly a ' + str(gender))
+    st.info('The Person is dominantly a ' + str(gender) + '.')
 
     st.subheader("Race:")
-    st.info('The Person is dominantly ' + str(dominant_race))
+    st.info('The Person is dominantly ' + str(dominant_race) + '.')
     race_chart_data = pd.DataFrame({
         'Probability': [asian, indian, black, white, middle_eastern, latino_hispanic],
         'Race': ["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"]
@@ -56,7 +79,7 @@ with tab3:
     st.altair_chart(race_chart, use_container_width=True)
 
     st.subheader("Emotion:")
-    st.info('The Person is approximately ' + str(dominant_emotion))
+    st.info('The Person is approximately ' + str(dominant_emotion) + '.')
     emotion_chart_data = pd.DataFrame({
         'Probability': [angry, disgust, fear, happy, sad, surprise, neutral],
         'Emotion': ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]

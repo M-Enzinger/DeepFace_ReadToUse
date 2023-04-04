@@ -14,7 +14,7 @@ with tab3:
     st.header("Image:")
     sfa = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img'])
     if st.button('Analyse'):
-        if (type(sfa) == "<class 'NoneType'>"):
+        if sfa is None:
             st.error('Upload a File First')
         else:
             a_one = DeepFace.analyze(img_path=sfa,

@@ -38,7 +38,7 @@ with tab3:
 
     plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
     plt.show()
-    st.pyplot(fig)
+    st.pyplot(fig, figsize=(640,640))
 
     age = a_one[0]['age']
     gender = a_one[0]['dominant_gender']

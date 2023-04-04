@@ -17,7 +17,7 @@ with tab3:
                             actions=['age', 'gender', 'race', 'emotion']
                             )
 
-    if (len(a_one == 1)):
+    if (len(a_one) == 1):
         col1, col2, col3 = st.columns(3)
         with col1:
             im = Image.open(path)

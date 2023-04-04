@@ -14,6 +14,33 @@ import tempfile
 
 tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single Face Analysis", "Crowd/ Multiple Face Analysis"])
 
+with tab1:
+    st.header("Image:")
+    #multiple pictures are allowed
+    fc1 = st.file_uploader("Choose a picture of the first person.", type=['png', 'jpg', 'img', 'jpeg'])
+    fc2 = st.file_uploader("Choose a picture of the second person.", type=['png', 'jpg', 'img', 'jpeg'])
+
+    col1, col2, col3 = st.columns(3)
+    with col2:
+        button_fc = st.button('Compare')
+
+    if button_fc:
+        if (fc1 or fc2) is None:
+            st.error('Upload a File First')
+        else:
+            with tempfile.NamedTemporaryFile(delete=False) as tmp_file1:
+                fp = Path(tmp_file1.name)
+                fp.write_bytes(fc1.getvalue())
+            with tempfile.NamedTemporaryFile(delete=False) as tmp_file2:
+                fp = Path(tmp_file2.name)
+                fp.write_bytes(fc2.getvalue())
+
+            result = DeepFace.verify(img1_path=tmp_file1.name, img2_path=tmp_file2.name)
+            if result[0]['verified']== True:
+                st.success('Both pictures show the same person.')
+            else:
+                st.warning('Both pictures do not show the same person.')
+
 
 with tab3:
     st.header("Image:")
@@ -111,8 +138,8 @@ with tab3:
             else:
                 st.error("On the provided picture are " + str(
                     len(a_one)) + " Persons. But only one is allowed. To analyse several faces on one picture use 'Crowd Analysis'.")
-    else:
-        st.markdown("Upload an Image and Press 'Analyse'")
+
+
 
 
 

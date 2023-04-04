@@ -25,7 +25,6 @@ with tab3:
                 st.error('Upload a File First')
             else:
                 with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-                    st.markdown("## Original PDF file")
                     fp = Path(tmp_file.name)
                     fp.write_bytes(sfa.getvalue())
 

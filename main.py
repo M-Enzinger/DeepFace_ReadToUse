@@ -11,5 +11,5 @@ with tab1:
    objs = DeepFace.analyze(img_path="face_db/img19.jpg",
                            actions=['age', 'gender', 'race', 'emotion']
                            )
-   st.markdown(display(objs))
+   st.markdown(objs)
    

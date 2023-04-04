@@ -45,20 +45,20 @@ with tab3:
 
         age = a_one[0]['age']
         gender = a_one[0]['dominant_gender']
-        asian = a_one[0]['race']['asian']
-        indian = a_one[0]['race']['indian']
-        black = a_one[0]['race']['black']
-        white = a_one[0]['race']['white']
-        middle_eastern = a_one[0]['race']['middle eastern']
-        latino_hispanic = a_one[0]['race']['latino hispanic']
+        asian = a_one[0]['race']['asian']*0.1
+        indian = a_one[0]['race']['indian']*0.1
+        black = a_one[0]['race']['black']*0.1
+        white = a_one[0]['race']['white']*0.1
+        middle_eastern = a_one[0]['race']['middle eastern']*0.1
+        latino_hispanic = a_one[0]['race']['latino hispanic']*0.1
         dominant_race = a_one[0]['dominant_race']
-        angry = a_one[0]['emotion']['angry']
-        disgust = a_one[0]['emotion']['disgust']
-        fear = a_one[0]['emotion']['fear']
-        happy = a_one[0]['emotion']['happy']
-        sad = a_one[0]['emotion']['sad']
-        surprise = a_one[0]['emotion']['surprise']
-        neutral = a_one[0]['emotion']['neutral']
+        angry = a_one[0]['emotion']['angry']*0.1
+        disgust = a_one[0]['emotion']['disgust']*0.1
+        fear = a_one[0]['emotion']['fear']*0.1
+        happy = a_one[0]['emotion']['happy']*0.1
+        sad = a_one[0]['emotion']['sad']*0.1
+        surprise = a_one[0]['emotion']['surprise']*0.1
+        neutral = a_one[0]['emotion']['neutral']*0.1
         dominant_emotion = a_one[0]['dominant_emotion']
 
         st.header("Analysis Results:")

@@ -24,7 +24,7 @@ with tab3:
             if len(a_one) == 1:
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    im = Image.open(sfa_opened)
+                    im = sfa_opened
                     # Create figure and axes
                     fig, ax = plt.subplots()
                     # Display the image

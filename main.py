@@ -36,7 +36,7 @@ with tab1:
                 fp.write_bytes(fc2.getvalue())
 
             result = DeepFace.verify(img1_path=tmp_file1.name, img2_path=tmp_file2.name)
-            if result[0]['verified']== True:
+            if result['verified']== True:
                 st.success('Both pictures show the same person.')
             else:
                 st.warning('Both pictures do not show the same person.')
@@ -47,7 +47,7 @@ with tab1:
             # Display the image
             ax.imshow(im)
             # Create a Rectangle patch
-            for n in result[0]['facial_areas']:
+            for n in result['facial_areas']:
                 x = n['x']
                 y = n['y']
                 w = n['w']

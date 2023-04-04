@@ -47,13 +47,29 @@ with tab1:
             # Display the image
             ax.imshow(im)
             # Create a Rectangle patch
-            for n in result['facial_areas']:
-                x = n['x']
-                y = n['y']
-                w = n['w']
-                h = n['h']
-                rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
-                ax.add_patch(rect)
+
+            x = result['facial_areas']['x']
+            y = result['facial_areas']['y']
+            w = result['facial_areas']['w']
+            h = result['facial_areas']['h']
+            rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
+            ax.add_patch(rect)
+
+            plt.show()
+            st.pyplot(fig)
+
+            im = Image.open(tmp_file2.name)
+            # Create figure and axes
+            fig, ax = plt.subplots()
+            # Display the image
+            ax.imshow(im)
+            # Create a Rectangle patch
+            x = result['facial_areas']['x']
+            y = result['facial_areas']['y']
+            w = result['facial_areas']['w']
+            h = result['facial_areas']['h']
+            rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
+            ax.add_patch(rect)
 
             plt.show()
             st.pyplot(fig)

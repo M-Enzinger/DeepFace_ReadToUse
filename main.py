@@ -21,13 +21,13 @@ tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single
 with tab3:
     st.header("Image:")
     sfa = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img', 'jpeg'])
-    save_uploaded(sfa)
     col1, col2, col3 = st.columns(3)
     with col2:
         if st.button('Analyse'):
             if sfa is None:
                 st.error('Upload a File First')
             else:
+                save_uploaded(sfa)
                 a_one = DeepFace.analyze(img_path=('images/' + sfa.name),
                                          actions=['age', 'gender', 'race', 'emotion']
                                          )

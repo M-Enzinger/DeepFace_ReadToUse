@@ -110,7 +110,7 @@ with tab3:
 
             else:
                 st.error("On the provided picture are " + str(
-                    len(a_one)) + ". But only one is allowed. To analyse several faces use 'Crowd Analysis'")
+                    len(a_one)) + " Persons. But only one is allowed. To analyse several faces on one picture use 'Crowd Analysis'.")
     else:
         st.markdown("Upload an Image and Press 'Analyse'")
 

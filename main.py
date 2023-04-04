@@ -12,10 +12,9 @@ tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single
 
 with tab3:
     st.header("Image:")
-    sfa = 0
     sfa = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img'])
     if st.button('Analyse'):
-        if (sfa == 0):
+        if (type(sfa) == NonType):
             st.error('Upload a File First')
         else:
             a_one = DeepFace.analyze(img_path=sfa,
@@ -101,7 +100,7 @@ with tab3:
                 st.error("On the provided picture are " + str(
                     len(a_one)) + ". But only one is allowed. To analyse several faces use 'Crowd Analysis'")
     else:
-        st.markdown("Upload a Image and Press 'Analyse'")
+        st.markdown("Upload an Image and Press 'Analyse'")
 
 
 

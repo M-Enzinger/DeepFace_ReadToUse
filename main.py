@@ -15,7 +15,7 @@ with tab3:
     sfa = 0
     sfa = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img'])
     if st.button('Analyse'):
-        if (uploaded_file == 0):
+        if (sfa == 0):
             st.error('Upload a File First')
         else:
             a_one = DeepFace.analyze(img_path=sfa,

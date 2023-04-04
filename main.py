@@ -41,10 +41,10 @@ with tab3:
     st.info('The Person is approximately ' + str(age) + ' years old.')
 
     st.subheader("Gender:")
-    st.info('The Person is approximately ' + str(gender))
+    st.info('The Person is dominantly a ' + str(gender))
 
     st.subheader("Race:")
-    st.info('The Person is approximately ' + str(dominant_race))
+    st.info('The Person is dominantly ' + str(dominant_race))
     race_chart_data = pd.DataFrame({
         'Probability': [asian, indian, black, white, middle_eastern, latino_hispanic],
         'Race': ["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"]
@@ -59,7 +59,7 @@ with tab3:
     st.info('The Person is approximately ' + str(dominant_emotion))
     emotion_chart_data = pd.DataFrame({
         'Probability': [angry, disgust, fear, happy, sad, surprise, neutral],
-        'Race': ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
+        'Emotion': ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
     })
     emotion_chart = alt.Chart(emotion_chart_data).mark_bar().encode(
         y='Probability',

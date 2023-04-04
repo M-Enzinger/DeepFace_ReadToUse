@@ -6,6 +6,7 @@ from deepface import DeepFace
 import pandas as pd
 import numpy as np
 import altair as alt
+from pathlib import Path
 
 
 def save_uploaded(file):

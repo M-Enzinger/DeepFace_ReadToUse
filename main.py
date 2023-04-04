@@ -37,4 +37,14 @@ with tab3:
     st.markdown(white)
     st.markdown(dominant_emotion)
 
-    st.bar_chart(x=["1", "2"], y=[5, 10])
+    race_chart_data = pd.DataFrame({
+        'Probability': [asian, indian, black, white, middle_eastern, latino_hispanic],
+        'Race': ["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"]
+    })
+
+    race_chart = alt.Chart(race_chart_data).mark_bar().encode(
+        y='Probability',
+        x='Race',
+    )
+
+    st.altair_chart(race_chart)

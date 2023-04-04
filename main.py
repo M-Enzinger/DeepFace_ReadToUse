@@ -37,6 +37,6 @@ with tab3:
     st.markdown(white)
     st.markdown(dominant_emotion)
     a_one_race_chart_data = pd.DataFrame(
-        [1.5, 1, 2, 3, 4, 5],
+        [[1.5], [1], [2], [3], [4], [5]],
         columns=["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"])
     st.bar_chart(a_one_race_chart_data)

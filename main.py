@@ -27,7 +27,7 @@ with tab3:
     indian = a_one[0]['race']['indian']
     black = a_one[0]['race']['black']
     white = a_one[0]['race']['white']
-    middle_eastern = a_one[0]['race']['middleeastern']
+    middle_eastern = a_one[0]['race']['middle eastern']
     latino_hispanic = a_one[0]['race']['latino hispanic']
     dominant_race = a_one[0]['dominant_race']
     angry = a_one[0]['emotion']['angry']

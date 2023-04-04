@@ -17,28 +17,30 @@ with tab3:
                             actions=['age', 'gender', 'race', 'emotion']
                             )
 
-    im = Image.open(path)
-    # Create figure and axes
-    fig, ax = plt.subplots()
-    # Display the image
-    ax.imshow(im)
-    # Create a Rectangle patch
-    for n in a_one:
-        x = n['region']['x']
-        y = n['region']['y']
-        w = n['region']['w']
-        h = n['region']['h']
-        rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
-        ax.add_patch(rect)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        im = Image.open(path)
+        # Create figure and axes
+        fig, ax = plt.subplots()
+        # Display the image
+        ax.imshow(im)
+        # Create a Rectangle patch
+        for n in a_one:
+            x = n['region']['x']
+            y = n['region']['y']
+            w = n['region']['w']
+            h = n['region']['h']
+            rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
+            ax.add_patch(rect)
 
-    if (len(a_one) == 1):
-        s = '1 Face Found'
-    else:
-        s = str(len(a_one)) + ' Faces Found'
+        if (len(a_one) == 1):
+            s = '1 Face Found'
+        else:
+            s = str(len(a_one)) + ' Faces Found'
 
-    plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
-    plt.show()
-    st.pyplot(fig, figsize=(640,640))
+        plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
+        plt.show()
+        st.pyplot(fig)
 
     age = a_one[0]['age']
     gender = a_one[0]['dominant_gender']

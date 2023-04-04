@@ -10,13 +10,13 @@ from pathlib import Path
 import tempfile
 
 
-st.header("Choose a tap, dpending on what you want to do:")
+st.subheader("Choose a tap, depending on what you want to do:")
 
 tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single Face Analysis", "Crowd/ Multiple Face Analysis"])
 
 
 with tab1:
-    st.header("Image Comparison:")
+    st.subheader("Image Comparison:")
     st.markdown("The AI will analyse whether two pictures show the SAME person. Multiple faces are allowed, in this case, the AI will compare the most similar ones.")
     st.warning("Step 1: Upload two pictures.")
     fc1 = st.file_uploader("Picture 1", type=['png', 'jpg', 'img', 'jpeg'])
@@ -80,7 +80,7 @@ with tab1:
 
 
 with tab3:
-    st.header("Face Analysis")
+    st.subheader("Face Analysis")
     st.markdown("The AI will analyse the person's face.")
     st.warning("Step 1: Upload a picture")
     sfa = st.file_uploader("", type=['png', 'jpg', 'img', 'jpeg'])

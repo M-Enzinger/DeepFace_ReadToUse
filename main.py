@@ -11,9 +11,9 @@ from pathlib import Path
 
 def save_uploaded(file):
     save_folder = 'images'
-    save_path = Path(save_folder, File.name)
+    save_path = Path(save_folder, file.name)
     with open(save_path, mode='wb') as w:
-        w.write(File.getvalue())
+        w.write(file.getvalue())
 
 tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single Face Analysis", "Crowd/ Multiple Face Analysis"])
 

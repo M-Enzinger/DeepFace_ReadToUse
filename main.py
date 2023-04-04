@@ -12,87 +12,96 @@ tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single
 
 with tab3:
     st.header("Image:")
-    path = 'face_db/img19.jpg'
-    uploaded_file = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img'])
-    a_one = DeepFace.analyze(img_path=path,
-                            actions=['age', 'gender', 'race', 'emotion']
-                            )
+    sfa = 0
+    sfa = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img'])
+    if st.button('Analyse'):
+        if (uploaded_file == 0):
+            st.error('Upload a File First')
+        else:
+            a_one = DeepFace.analyze(img_path=sfa,
+                                     actions=['age', 'gender', 'race', 'emotion']
+                                     )
+            if len(a_one) == 1:
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    im = Image.open(sfa)
+                    # Create figure and axes
+                    fig, ax = plt.subplots()
+                    # Display the image
+                    ax.imshow(im)
+                    # Create a Rectangle patch
+                    for n in a_one:
+                        x = n['region']['x']
+                        y = n['region']['y']
+                        w = n['region']['w']
+                        h = n['region']['h']
+                        rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
+                        ax.add_patch(rect)
 
-    if (len(a_one) == 1):
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            im = Image.open(path)
-            # Create figure and axes
-            fig, ax = plt.subplots()
-            # Display the image
-            ax.imshow(im)
-            # Create a Rectangle patch
-            for n in a_one:
-                x = n['region']['x']
-                y = n['region']['y']
-                w = n['region']['w']
-                h = n['region']['h']
-                rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
-                ax.add_patch(rect)
+                    if len(a_one) == 1:
+                        s = '1 Face Found'
+                    else:
+                        s = str(len(a_one)) + ' Faces Found'
 
-            if (len(a_one) == 1):
-                s = '1 Face Found'
+                    plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
+                    plt.show()
+                    st.pyplot(fig)
+
+                age = a_one[0]['age']
+                gender = a_one[0]['dominant_gender']
+                asian = a_one[0]['race']['asian']
+                indian = a_one[0]['race']['indian']
+                black = a_one[0]['race']['black']
+                white = a_one[0]['race']['white']
+                middle_eastern = a_one[0]['race']['middle eastern']
+                latino_hispanic = a_one[0]['race']['latino hispanic']
+                dominant_race = a_one[0]['dominant_race']
+                angry = a_one[0]['emotion']['angry']
+                disgust = a_one[0]['emotion']['disgust']
+                fear = a_one[0]['emotion']['fear']
+                happy = a_one[0]['emotion']['happy']
+                sad = a_one[0]['emotion']['sad']
+                surprise = a_one[0]['emotion']['surprise']
+                neutral = a_one[0]['emotion']['neutral']
+                dominant_emotion = a_one[0]['dominant_emotion']
+
+                st.header("Analysis Results:")
+
+                st.subheader("Age:")
+                st.info('The Person is approximately ' + str(age) + ' years old.')
+
+                st.subheader("Gender:")
+                st.info('The Person is dominantly a ' + str(gender) + '.')
+
+                st.subheader("Race:")
+                st.info('The Person is dominantly ' + str(dominant_race) + '.')
+                race_chart_data = pd.DataFrame({
+                    'Probability in %': [asian, indian, black, white, middle_eastern, latino_hispanic],
+                    'Race': ["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"]
+                })
+                race_chart = alt.Chart(race_chart_data).mark_bar().encode(
+                    y='Probability in %',
+                    x='Race',
+                )
+                st.altair_chart(race_chart, use_container_width=True)
+
+                st.subheader("Emotion:")
+                st.info('The Person is approximately ' + str(dominant_emotion) + '.')
+                emotion_chart_data = pd.DataFrame({
+                    'Probability in %': [angry, disgust, fear, happy, sad, surprise, neutral],
+                    'Emotion': ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
+                })
+                emotion_chart = alt.Chart(emotion_chart_data).mark_bar().encode(
+                    y='Probability in %',
+                    x='Emotion',
+                )
+                st.altair_chart(emotion_chart, use_container_width=True)
+
             else:
-                s = str(len(a_one)) + ' Faces Found'
-
-            plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
-            plt.show()
-            st.pyplot(fig)
-
-        age = a_one[0]['age']
-        gender = a_one[0]['dominant_gender']
-        asian = a_one[0]['race']['asian']
-        indian = a_one[0]['race']['indian']
-        black = a_one[0]['race']['black']
-        white = a_one[0]['race']['white']
-        middle_eastern = a_one[0]['race']['middle eastern']
-        latino_hispanic = a_one[0]['race']['latino hispanic']
-        dominant_race = a_one[0]['dominant_race']
-        angry = a_one[0]['emotion']['angry']
-        disgust = a_one[0]['emotion']['disgust']
-        fear = a_one[0]['emotion']['fear']
-        happy = a_one[0]['emotion']['happy']
-        sad = a_one[0]['emotion']['sad']
-        surprise = a_one[0]['emotion']['surprise']
-        neutral = a_one[0]['emotion']['neutral']
-        dominant_emotion = a_one[0]['dominant_emotion']
-
-        st.header("Analysis Results:")
-
-        st.subheader("Age:")
-        st.info('The Person is approximately ' + str(age) + ' years old.')
-
-        st.subheader("Gender:")
-        st.info('The Person is dominantly a ' + str(gender) + '.')
-
-        st.subheader("Race:")
-        st.info('The Person is dominantly ' + str(dominant_race) + '.')
-        race_chart_data = pd.DataFrame({
-            'Probability in %': [asian, indian, black, white, middle_eastern, latino_hispanic],
-            'Race': ["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"]
-        })
-        race_chart = alt.Chart(race_chart_data).mark_bar().encode(
-            y='Probability in %',
-            x='Race',
-        )
-        st.altair_chart(race_chart, use_container_width=True)
-
-        st.subheader("Emotion:")
-        st.info('The Person is approximately ' + str(dominant_emotion) + '.')
-        emotion_chart_data = pd.DataFrame({
-            'Probability in %': [angry, disgust, fear, happy, sad, surprise, neutral],
-            'Emotion': ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
-        })
-        emotion_chart = alt.Chart(emotion_chart_data).mark_bar().encode(
-            y='Probability in %',
-            x='Emotion',
-        )
-        st.altair_chart(emotion_chart, use_container_width=True)
-
+                st.error("On the provided picture are " + str(
+                    len(a_one)) + ". But only one is allowed. To analyse several faces use 'Crowd Analysis'")
     else:
-        st.error("On the provided picture are " + str(len(a_one)) + ". But only one is allowed. To analyse several faces use 'Crowd Analysis'")
+        st.markdown("Upload a Image and Press 'Analyse'")
+
+
+

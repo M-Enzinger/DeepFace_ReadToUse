@@ -45,20 +45,20 @@ with tab3:
 
         age = a_one[0]['age']
         gender = a_one[0]['dominant_gender']
-        asian = a_one[0]['race']['asian']*0.1
-        indian = a_one[0]['race']['indian']*0.1
-        black = a_one[0]['race']['black']*0.1
-        white = a_one[0]['race']['white']*0.1
-        middle_eastern = a_one[0]['race']['middle eastern']*0.1
-        latino_hispanic = a_one[0]['race']['latino hispanic']*0.1
+        asian = a_one[0]['race']['asian']
+        indian = a_one[0]['race']['indian']
+        black = a_one[0]['race']['black']
+        white = a_one[0]['race']['white']
+        middle_eastern = a_one[0]['race']['middle eastern']
+        latino_hispanic = a_one[0]['race']['latino hispanic']
         dominant_race = a_one[0]['dominant_race']
-        angry = a_one[0]['emotion']['angry']*0.1
-        disgust = a_one[0]['emotion']['disgust']*0.1
-        fear = a_one[0]['emotion']['fear']*0.1
-        happy = a_one[0]['emotion']['happy']*0.1
-        sad = a_one[0]['emotion']['sad']*0.1
-        surprise = a_one[0]['emotion']['surprise']*0.1
-        neutral = a_one[0]['emotion']['neutral']*0.1
+        angry = a_one[0]['emotion']['angry']
+        disgust = a_one[0]['emotion']['disgust']
+        fear = a_one[0]['emotion']['fear']
+        happy = a_one[0]['emotion']['happy']
+        sad = a_one[0]['emotion']['sad']
+        surprise = a_one[0]['emotion']['surprise']
+        neutral = a_one[0]['emotion']['neutral']
         dominant_emotion = a_one[0]['dominant_emotion']
 
         st.header("Analysis Results:")
@@ -72,11 +72,11 @@ with tab3:
         st.subheader("Race:")
         st.info('The Person is dominantly ' + str(dominant_race) + '.')
         race_chart_data = pd.DataFrame({
-            'Probability': [asian, indian, black, white, middle_eastern, latino_hispanic],
+            'Probability in %': [asian, indian, black, white, middle_eastern, latino_hispanic],
             'Race': ["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"]
         })
         race_chart = alt.Chart(race_chart_data).mark_bar().encode(
-            y='Probability',
+            y='Probability in %',
             x='Race',
         )
         st.altair_chart(race_chart, use_container_width=True)
@@ -84,11 +84,11 @@ with tab3:
         st.subheader("Emotion:")
         st.info('The Person is approximately ' + str(dominant_emotion) + '.')
         emotion_chart_data = pd.DataFrame({
-            'Probability': [angry, disgust, fear, happy, sad, surprise, neutral],
+            'Probability in %': [angry, disgust, fear, happy, sad, surprise, neutral],
             'Emotion': ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
         })
         emotion_chart = alt.Chart(emotion_chart_data).mark_bar().encode(
-            y='Probability',
+            y='Probability in %',
             x='Emotion',
         )
         st.altair_chart(emotion_chart, use_container_width=True)

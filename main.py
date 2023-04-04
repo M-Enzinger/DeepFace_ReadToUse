@@ -8,12 +8,6 @@ import numpy as np
 
 tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Face Analyziss", "Crowd Analysis"])
 
-with tab1:
-   st.header("Face Comparison")
-   objs = DeepFace.analyze(img_path="face_db/img19.jpg",
-                           actions=['age', 'gender', 'race', 'emotion']
-                           )
-   st.markdown(objs)
 
 with tab3:
     st.header("Face Comparison")
@@ -42,4 +36,7 @@ with tab3:
     st.markdown(age)
     st.markdown(white)
     st.markdown(dominant_emotion)
-   
+    a_one_race_chart_data = pd.DataFrame(
+        [1.5, 1, 2, 3, 4, 5],
+        columns=["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"])
+    st.bar_chart(a_one_race_chart_data)

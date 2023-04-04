@@ -13,13 +13,16 @@ import tempfile
 
 
 tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single Face Analysis", "Crowd/ Multiple Face Analysis"])
+st.header("Choose a tap, dpending on what you want to do:")
 
 with tab1:
-    st.header("Image:")
+    st.header("Image Comparison:")
+    st.subheader("The AI will analyse whether two pictures show the SAME person, or not.")
+    st.warning("Step 1: Upload two pictures.")
     #multiple pictures are allowed
-    fc1 = st.file_uploader("Choose a picture of the first person.", type=['png', 'jpg', 'img', 'jpeg'])
-    fc2 = st.file_uploader("Choose a picture of the second person.", type=['png', 'jpg', 'img', 'jpeg'])
-
+    fc1 = st.file_uploader("Picture 1", type=['png', 'jpg', 'img', 'jpeg'])
+    fc2 = st.file_uploader("Picture 2", type=['png', 'jpg', 'img', 'jpeg'])
+    st.warning("Step 2: Click on 'Compare'")
     col1, col2, col3 = st.columns(3)
     with col2:
         button_fc = st.button('Compare')
@@ -28,6 +31,7 @@ with tab1:
         if (fc1 or fc2) is None:
             st.error('Upload a File First')
         else:
+            st.success("SUCCESS! The Prediction:")
             with tempfile.NamedTemporaryFile(delete=False) as tmp_file1:
                 fp = Path(tmp_file1.name)
                 fp.write_bytes(fc1.getvalue())
@@ -77,8 +81,11 @@ with tab1:
 
 
 with tab3:
-    st.header("Image:")
-    sfa = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img', 'jpeg'])
+    st.header("Face Analysis")
+    st.subheader("The AI will analyse the person's face.")
+    st.warning("Step 1: Upload a picture")
+    sfa = st.file_uploader("", type=['png', 'jpg', 'img', 'jpeg'])
+    st.warning("Step 2: Click on 'Analyse'")
     col1, col2, col3 = st.columns(3)
     with col2:
         button_sfa = st.button('Analyse')
@@ -86,6 +93,7 @@ with tab3:
         if sfa is None:
             st.error('Upload a File First')
         else:
+            st.success("SUCCESS. The Results:")
             with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
                 fp = Path(tmp_file.name)
                 fp.write_bytes(sfa.getvalue())

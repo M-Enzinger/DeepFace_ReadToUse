@@ -48,10 +48,10 @@ with tab1:
             ax.imshow(im)
             # Create a Rectangle patch
 
-            x = result['facial_areas']['x']
-            y = result['facial_areas']['y']
-            w = result['facial_areas']['w']
-            h = result['facial_areas']['h']
+            x = result['facial_areas']['img1']['x']
+            y = result['facial_areas']['img1']['y']
+            w = result['facial_areas']['img1']['w']
+            h = result['facial_areas']['img1']['h']
             rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
             ax.add_patch(rect)
 
@@ -64,10 +64,10 @@ with tab1:
             # Display the image
             ax.imshow(im)
             # Create a Rectangle patch
-            x = result['facial_areas']['x']
-            y = result['facial_areas']['y']
-            w = result['facial_areas']['w']
-            h = result['facial_areas']['h']
+            x = result['facial_areas']['img2']['x']
+            y = result['facial_areas']['img2']['y']
+            w = result['facial_areas']['img2']['w']
+            h = result['facial_areas']['img2']['h']
             rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
             ax.add_patch(rect)
 

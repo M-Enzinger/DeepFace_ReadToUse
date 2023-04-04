@@ -17,4 +17,4 @@ matplotlib
 deepface
 opencv-python
 protobuf==3.20.3
-libgl1-mesa-glx
+libgl1-mesa-glx>=18.0.0

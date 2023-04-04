@@ -34,7 +34,7 @@ with tab3:
                 if len(a_one) == 1:
                     col1, col2, col3 = st.columns(3)
                     with col2:
-                        im = Image.opem(tmp_file.name)
+                        im = Image.open(tmp_file.name)
                         # Create figure and axes
                         fig, ax = plt.subplots()
                         # Display the image

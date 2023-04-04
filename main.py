@@ -30,7 +30,7 @@ with tab1:
         if (fc1 or fc2) is None:
             st.error('Upload a File First')
         else:
-
+            st.warning("Depending on the picture, calculation can take up to 2 minutes!")
             with tempfile.NamedTemporaryFile(delete=False) as tmp_file1:
                 fp = Path(tmp_file1.name)
                 fp.write_bytes(fc1.getvalue())
@@ -93,6 +93,7 @@ with tab3:
         if sfa is None:
             st.error('Upload a File First')
         else:
+            st.warning("Depending on the picture, calculation can take up to 2 minutes!")
             with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
                 fp = Path(tmp_file.name)
                 fp.write_bytes(sfa.getvalue())

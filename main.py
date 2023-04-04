@@ -7,13 +7,10 @@ import pandas as pd
 import numpy as np
 import altair as alt
 from pathlib import Path
+import tempfile
 
 
-def save_uploaded(file):
-    save_folder = 'images'
-    save_path = Path(save_folder, file.name)
-    with open(save_path, mode='wb') as w:
-        w.write(file.getvalue())
+
 
 tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single Face Analysis", "Crowd/ Multiple Face Analysis"])
 
@@ -27,14 +24,18 @@ with tab3:
             if sfa is None:
                 st.error('Upload a File First')
             else:
-                save_uploaded(sfa)
-                a_one = DeepFace.analyze(img_path=('images/' + sfa.name),
+                with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+                    st.markdown("## Original PDF file")
+                    fp = Path(tmp_file.name)
+                    fp.write_bytes(sfa.getvalue())
+
+                a_one = DeepFace.analyze(img_path='tmp_file.name',
                                          actions=['age', 'gender', 'race', 'emotion']
                                          )
                 if len(a_one) == 1:
                     col1, col2, col3 = st.columns(3)
                     with col2:
-                        im = Image.opem('images/' + sfa.name)
+                        im = Image.opem('tmp_file.name')
                         # Create figure and axes
                         fig, ax = plt.subplots()
                         # Display the image

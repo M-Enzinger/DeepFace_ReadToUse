@@ -13,6 +13,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single
 with tab3:
     st.header("Image:")
     path = 'face_db/img19.jpg'
+    uploaded_file = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img'])
     a_one = DeepFace.analyze(img_path=path,
                             actions=['age', 'gender', 'race', 'emotion']
                             )

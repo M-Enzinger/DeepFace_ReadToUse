@@ -13,6 +13,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["Face Comparison", "Face Recognition", "Single
 with tab3:
     st.header("Image:")
     sfa = st.file_uploader("Choose a picture to analyse.", type=['png', 'jpg', 'img'])
+    st.text(type(sfa))
     if st.button('Analyse'):
         if (type(sfa) == NonType):
             st.error('Upload a File First')

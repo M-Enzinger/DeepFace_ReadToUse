@@ -39,14 +39,7 @@ with tab3:
     neutral = a_one[0]['emotion']['neutral']
     dominant_emotion = a_one[0]['dominant_emotion']
 
-
-    a_one_race_chart_data = pd.DataFrame(
-        [asian, indian, black, white, middle_eastern, latino_hispanic],
-        columns=["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"])
-    st.bar_chart(a_one_race_chart_data)
-
-    a_one_emotion_chart_data = pd.DataFrame(
-        [angry, disgust, fear, happy, sad, surprise, neutral],
-        columns=["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"])
-    st.bar_chart(a_one_emotion_chart_data)
+    st.markdown(age)
+    st.markdown(white)
+    st.markdown(dominant_emotion)
    

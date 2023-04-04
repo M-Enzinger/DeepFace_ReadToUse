@@ -30,7 +30,7 @@ with tab1:
         if (fc1 or fc2) is None:
             st.error('Upload a File First')
         else:
-            st.success("SUCCESS! The Prediction:")
+
             with tempfile.NamedTemporaryFile(delete=False) as tmp_file1:
                 fp = Path(tmp_file1.name)
                 fp.write_bytes(fc1.getvalue())
@@ -39,6 +39,7 @@ with tab1:
                 fp.write_bytes(fc2.getvalue())
 
             result = DeepFace.verify(img1_path=tmp_file1.name, img2_path=tmp_file2.name)
+            st.success("SUCCESS! The Prediction:")
             if result['verified']== True:
                 st.success('Both pictures show the same person.')
             else:
@@ -92,7 +93,6 @@ with tab3:
         if sfa is None:
             st.error('Upload a File First')
         else:
-            st.success("SUCCESS. The Results:")
             with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
                 fp = Path(tmp_file.name)
                 fp.write_bytes(sfa.getvalue())
@@ -100,6 +100,8 @@ with tab3:
             a_one = DeepFace.analyze(img_path=tmp_file.name,
                                      actions=['age', 'gender', 'race', 'emotion']
                                      )
+
+            st.success("SUCCESS. The Results:")
             if len(a_one) == 1:
                 col1, col2, col3 = st.columns(3)
                 with col2:

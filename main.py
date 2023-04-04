@@ -34,18 +34,22 @@ with tab3:
     neutral = a_one[0]['emotion']['neutral']
     dominant_emotion = a_one[0]['dominant_emotion']
 
-    st.markdown(age)
-    st.markdown(white)
-    st.markdown(dominant_emotion)
-
     race_chart_data = pd.DataFrame({
         'Probability': [asian, indian, black, white, middle_eastern, latino_hispanic],
         'Race': ["Asian", "Indian", "Black", "White", "Middle Eastern", "Latino Hispanic"]
     })
-
     race_chart = alt.Chart(race_chart_data).mark_bar().encode(
         y='Probability',
         x='Race',
     )
-
     st.altair_chart(race_chart, use_container_width=True)
+
+    emotion_chart_data = pd.DataFrame({
+        'Probability': [angry, disgust, fear, happy, sad, surprise, neutral],
+        'Race': ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
+    })
+    emotion_chart = alt.Chart(emotion_chart_data).mark_bar().encode(
+        y='Probability',
+        x='Race',
+    )
+    st.altair_chart(emotion_chart, use_container_width=True)

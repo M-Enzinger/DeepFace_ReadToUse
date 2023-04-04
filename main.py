@@ -105,29 +105,29 @@ with tab3:
             st.success("SUCCESS. The Results:")
             if len(a_one) == 1:
                 col1, col2, col3 = st.columns(3)
-                with col2:
-                    im = Image.open(tmp_file.name)
-                    # Create figure and axes
-                    fig, ax = plt.subplots()
-                    # Display the image
-                    ax.imshow(im)
-                    # Create a Rectangle patch
-                    for n in a_one:
-                        x = n['region']['x']
-                        y = n['region']['y']
-                        w = n['region']['w']
-                        h = n['region']['h']
-                        rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
-                        ax.add_patch(rect)
 
-                    if len(a_one) == 1:
-                        s = '1 Face Found'
-                    else:
-                        s = str(len(a_one)) + ' Faces Found'
+                im = Image.open(tmp_file.name)
+                # Create figure and axes
+                fig, ax = plt.subplots()
+                # Display the image
+                ax.imshow(im)
+                # Create a Rectangle patch
+                for n in a_one:
+                    x = n['region']['x']
+                    y = n['region']['y']
+                    w = n['region']['w']
+                    h = n['region']['h']
+                    rect = patches.Rectangle((x, y), w, h, linewidth=1, edgecolor='r', facecolor='none')
+                    ax.add_patch(rect)
 
-                    plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
-                    plt.show()
-                    st.pyplot(fig)
+                if len(a_one) == 1:
+                    s = '1 Face Found'
+                else:
+                    s = str(len(a_one)) + ' Faces Found'
+
+                plt.text(40, 80, s, color='blue', bbox=dict(fill=False, edgecolor='blue', linewidth=2))
+                plt.show()
+                st.pyplot(fig)
 
                 age = a_one[0]['age']
                 gender = a_one[0]['dominant_gender']
@@ -146,8 +146,6 @@ with tab3:
                 surprise = a_one[0]['emotion']['surprise']
                 neutral = a_one[0]['emotion']['neutral']
                 dominant_emotion = a_one[0]['dominant_emotion']
-
-                st.header("Analysis Results:")
 
                 st.subheader("Age:")
                 st.info('The Person is approximately ' + str(age) + ' years old.')

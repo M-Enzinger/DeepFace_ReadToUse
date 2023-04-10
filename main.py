@@ -12,7 +12,7 @@ import tempfile
 
 
 st.subheader("Face Analysis")
-St.markdown("© Maximilian Enzinger, implemented using DeepFace")
+st.markdown("© Maximilian Enzinger, implemented using DeepFace")
 st.markdown("The AI will analyse the person's face.")
 st.warning("Step 1: Upload a picture")
 sfa = st.file_uploader("", type=['png', 'jpg', 'img', 'jpeg'])

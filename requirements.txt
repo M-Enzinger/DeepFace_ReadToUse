@@ -18,3 +18,4 @@ matplotlib
 deepface
 opencv-python-headless
 scikit-learn
+tf-keras
